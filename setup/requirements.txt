@@ -1,0 +1,3 @@
+mediapipe
+# conda install -c conda-forge opencv
+tensorflow
