@@ -63,7 +63,9 @@ def extract_data_from_video(per_gesture_record_sec, gestures, output_file_path, 
             color = (0, 0, 255)
             if gesture_counter >= 0:
                 gesture = gestures[gesture_counter]
-                message = "Show gesture : {}".format(gestures[gesture_counter])
+                message = "Show gesture : {}, for : {}".format(gestures[gesture_counter],
+                                                                 per_gesture_record_sec -
+                                                                 (curr_time - last_gesture_time))
             else:
                 message = "Starting recording gesture in : {}".format(per_gesture_record_sec -
                                                                       (curr_time - last_gesture_time))
@@ -109,7 +111,8 @@ def extract_data_from_video(per_gesture_record_sec, gestures, output_file_path, 
     cap.release()
     write_data_to_csv(output_file_path, rows)
 
-data_path = os.path.join(props.data_dir, "train_gesture.csv")
+# data_path = os.path.join(props.data_dir, "train_gesture.csv")
+data_path = os.path.join(props.data_dir, "test_gesture.csv")
 extract_data_from_video(gestures=["Thumbs Up", "Thumbs Down", "Thumbs Right", "Thumbs Left", "Palm",
                                   "Fist", "One Index", "Two Index"],
-                        per_gesture_record_sec=10, output_file_path=data_path)
+                        per_gesture_record_sec=5, output_file_path=data_path)
