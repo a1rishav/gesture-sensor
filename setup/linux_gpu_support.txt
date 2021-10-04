@@ -1,0 +1,7 @@
+# check GPU support
+
+# linux check if mediapipe can run
+sudo apt-get install mesa-common-dev libegl1-mesa-dev libgles2-mesa-dev
+sudo apt-get install mesa-utils
+
+# Reference : https://www.tensorflow.org/install/gpu

@@ -9,6 +9,7 @@ from tensorflow.keras.models import load_model
 
 from setup.app_properties import AppProperties as props
 
+import pyautogui
 # scientific ic to float notation
 np.set_printoptions(suppress=True)
 
@@ -21,7 +22,7 @@ def get_gesture_data_from_hand_land_marks(hand_landmarks):
     return np.array(row).reshape(1, 42)
 
 
-def predict_gesture_from_video(model, class_value_dict, gesture_gap_sec=1):
+def predict_gesture_from_video(model, class_value_dict, gesture_gap_sec=0.5):
     org = (40, 40)
     font = cv2.FONT_HERSHEY_SIMPLEX
     fontScale = 1.5
@@ -42,7 +43,6 @@ def predict_gesture_from_video(model, class_value_dict, gesture_gap_sec=1):
             min_tracking_confidence=0.5) as hands:
         while cap.isOpened():
             success, image = cap.read()
-            curr_time = int(time.time())
             if not success:
                 print("Ignoring empty camera frame.")
                 # If loading a video, use 'break' instead of 'continue'.
@@ -64,20 +64,38 @@ def predict_gesture_from_video(model, class_value_dict, gesture_gap_sec=1):
             if results.multi_hand_landmarks:
                 for hand_landmarks in results.multi_hand_landmarks:
                     # import pdb; pdb.set_trace()
-                    if int(time.time()) - last_gesture_time < gesture_gap_sec:
-                        message = ""
-                    else:
-                        gesture_points = get_gesture_data_from_hand_land_marks(hand_landmarks)
-                        predicted_gestures = model.predict(gesture_points)
-                        message = pred_gesture = class_value_dict[np.where(predicted_gestures == predicted_gestures.max())[1][0]]
+                    gesture_points = get_gesture_data_from_hand_land_marks(hand_landmarks)
+                    predicted_gestures = model.predict(gesture_points)
+                    message = pred_gesture = class_value_dict[np.where(predicted_gestures == predicted_gestures.max())[1][0]]
                     print(message)
+
+                    # actions
+                    print("Diff : {}".format(int(time.time()) - last_gesture_time))
+                    curr_time = time.time()
+                    if curr_time - last_gesture_time >= gesture_gap_sec:
+                        if pred_gesture == "Thumbs Right":
+                            print("==================>>> right")
+                            pyautogui.hotkey('ctrl', 'tab')
+                        elif pred_gesture == "Thumbs Left":
+                            print("==================>>>left")
+                            pyautogui.hotkey('ctrl', 'shift', 'tab')
+                        # elif pred_gesture == "Fist":
+                        #     print("fist")
+                        #     pyautogui.hotkey('alt','tab')
+                        elif pred_gesture == "Thumbs Up":
+                            print("==================>>>pageup")
+                            pyautogui.press('pageup')
+                        elif pred_gesture == "Thumbs Down":
+                            print("==================>>>pagedown")
+                            pyautogui.press('pagedown')
+                        last_gesture_time = time.time()
+
                     mp_drawing.draw_landmarks(
                         image,
                         hand_landmarks,
                         mp_hands.HAND_CONNECTIONS,
                         mp_drawing_styles.get_default_hand_landmarks_style(),
                         mp_drawing_styles.get_default_hand_connections_style())
-                last_gesture_time = int(time.time())
             else:
                 message = ""
             print(message)
@@ -104,8 +122,12 @@ class_value_dict_rev = {
     6: "One Index",
     7: "Two Index"
 }
+action_dict = {
+ 0
+}
 max_pred = pred.max()
 pred_value = np.where(pred == np.amax(pred))[1]
 print()
+
 
 predict_gesture_from_video(model=model, class_value_dict=class_value_dict_rev)
