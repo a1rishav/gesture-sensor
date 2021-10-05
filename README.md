@@ -1,7 +1,7 @@
 # gesture-sensor
 
 ## Objective
-- Control APPs through gestures
+- Control desktop apps through gestures
 - Configuration driven action with gesture
 - Option to add gestures
 
