@@ -1,0 +1,17 @@
+{
+  "chrome": {
+    "Thumbs Up": "pageup",
+    "Thumbs Down": "pagedown",
+    "Thumbs Left": ["ctrl", "shift", "tab"],
+    "Thumbs Right": ["ctrl","tab"]
+  },
+  "vlc": {
+    "Thumbs Left": "left",
+    "Thumbs Right": "right",
+    "Palm": "space"
+  },
+  "common" : {
+    "Thumbs Up": "pageup",
+    "Thumbs Down": "pagedown"
+  }
+}
