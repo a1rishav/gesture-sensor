@@ -1,4 +1,4 @@
-# gesture-sensor
+# Gesture Recognition
 
 ## Objective
 - Control desktop apps through gestures
