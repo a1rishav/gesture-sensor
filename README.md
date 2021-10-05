@@ -9,7 +9,7 @@
 - Media Pipe - to extract 21 hand landmarks
   - ![alt text](https://github.com/a1rishav/gesture-sensor/blob/main/images/hand_landmarks.png)
 - Xdotool - to get active application window
-- Pyaitogui - to press keyboard shortcuts
+- Pyautogui - to press keyboard shortcuts
 
 ## Workflow
 ![alt text](https://github.com/a1rishav/gesture-sensor/blob/main/images/workflow.png)
