@@ -86,10 +86,6 @@ def predict_gesture_from_video(model, class_value_dict, app_gesture_action_dict,
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-            # mp_drawing = mp.solutions.drawing_utils
-            # mp_drawing_styles = mp.solutions.drawing_styles
-            # mp_hands = mp.solutions.hands
-
             if results.multi_hand_landmarks:
                 for hand_landmarks in results.multi_hand_landmarks:
                     curr_time = time.time()
@@ -130,14 +126,6 @@ def predict_gesture_from_video(model, class_value_dict, app_gesture_action_dict,
                         pyautogui.press(action)
                     elif isinstance(action, list):
                         pyautogui.hotkey(*tuple(action))
-
-                    last_gesture_time = time.time()
-                    # mp_drawing.draw_landmarks(
-                    #     image,
-                    #     hand_landmarks,
-                    #     mp_hands.HAND_CONNECTIONS,
-                    #     mp_drawing_styles.get_default_hand_landmarks_style(),
-                    #     mp_drawing_styles.get_default_hand_connections_style())
             else:
                 if pred_gesture == "Fist":
                     pyautogui.keyUp('alt')

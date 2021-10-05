@@ -104,7 +104,7 @@ def predict_gesture_from_video(model, class_value_dict, gesture_gap_sec=0.5):
             image = cv2.putText(image, message, org, font,
                                 fontScale, color, thickness, cv2.LINE_AA)
 
-            cv2.imshow('MediaPipe Hands', image)
+            cv2.imshow('Hand Gesture Recognition', image)
             if cv2.waitKey(5) & 0xFF == 27:
                 break
     cap.release()

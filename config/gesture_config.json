@@ -8,6 +8,8 @@
   "vlc": {
     "Thumbs Left": "left",
     "Thumbs Right": "right",
+    "Thumbs Up": "up",
+    "Thumbs Down": "down",
     "Palm": "space"
   },
   "common" : {
