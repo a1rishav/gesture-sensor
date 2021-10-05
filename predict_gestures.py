@@ -12,7 +12,6 @@ import pyautogui
 from setup.app_properties import AppProperties as props
 
 # configs
-# scientific ic to float notation (used in models prediction)
 np.set_printoptions(suppress=True)
 pyautogui.FAILSAFE = False
 class_value_dict_rev = {
@@ -138,7 +137,7 @@ def predict_gesture_from_video(model, class_value_dict, app_gesture_action_dict,
             image = cv2.putText(image, message, org, font,
                                 fontScale, color, thickness, cv2.LINE_AA)
 
-            image = cv2.resize(image, (300, 300))
+            image = cv2.resize(image, (400, 350))
             cv2.imshow('Hand Gesture Recognition', image)
             if cv2.waitKey(5) & 0xFF == 27:
                 break

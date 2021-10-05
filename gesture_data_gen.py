@@ -86,7 +86,7 @@ def extract_data_from_video(per_gesture_record_sec, gestures, output_file_path, 
         # pass by reference.
         image.flags.writeable = False
         results = hands.process(image)
-        # import pdb; pdb.set_trace()
+
         # Draw the hand annotations on the image.
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -105,14 +105,18 @@ def extract_data_from_video(per_gesture_record_sec, gestures, output_file_path, 
         image = cv2.putText(image, message, org, font,
                             fontScale, color, thickness, cv2.LINE_AA)
 
-        cv2.imshow('MediaPipe Hands', image)
+        cv2.imshow('Hand Gesture Recognition', image)
         if cv2.waitKey(5) & 0xFF == 27:
           break
     cap.release()
     write_data_to_csv(output_file_path, rows)
 
 # data_path = os.path.join(props.data_dir, "train_gesture.csv")
-data_path = os.path.join(props.data_dir, "test_gesture.csv")
-extract_data_from_video(gestures=["Thumbs Up", "Thumbs Down", "Thumbs Right", "Thumbs Left", "Palm",
-                                  "Fist", "One Index", "Two Index"],
+# data_path = os.path.join(props.data_dir, "test_gesture.csv")
+# extract_data_from_video(gestures=["Thumbs Up", "Thumbs Down", "Thumbs Right", "Thumbs Left", "Palm",
+#                                   "Fist", "One Index", "Two Index"],
+#                         per_gesture_record_sec=5, output_file_path=data_path)
+
+data_path = os.path.join(props.data_dir, "sample_gesture.csv")
+extract_data_from_video(gestures=["Thumbs Up", "Thumbs Down", "One Index", "Two Index", "Okay"],
                         per_gesture_record_sec=5, output_file_path=data_path)
