@@ -22,3 +22,6 @@
 - Using multiple hand gestures
 - docker based support
 
+## References :
+- https://google.github.io/mediapipe/solutions/hands
+- https://pyautogui.readthedocs.io/en/latest/keyboard.html
