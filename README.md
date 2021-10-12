@@ -1,4 +1,4 @@
-# Gesture Recognition
+# Gesture Recognition ([demo](https://www.linkedin.com/posts/rishav-kumar-226a25144_keras-opencv-mediapipe-activity-6851220442745761792-5giu))
 
 ## Objective
 - Control desktop apps through gestures
